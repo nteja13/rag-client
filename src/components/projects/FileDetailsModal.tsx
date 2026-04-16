@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useAuth } from "@clerk/nextjs";
-import { apiClient } from "@/lib/api";
+import { apiClient } from "@/src/lib/api";
 import { ProjectDocument } from "@/lib/types";
 import { GenericStep } from "./document-details/GenericStep";
 import { PartitioningStep } from "./document-details/PartitioningStep";
@@ -91,7 +91,7 @@ export function FileDetailsModal({ document, onClose }: FileDetailsModalProps) {
       setChunksLoading(true);
       const result = await apiClient.get(
         `/api/projects/${document.project_id}/files/${document.id}/chunks`,
-        token
+        token ?? undefined
       );
 
       const chunks = result.data.map((chunk: any) => ({
