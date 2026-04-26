@@ -488,6 +488,9 @@ export function KnowledgeBaseSidebar({
                         new Date(b.created_at).getTime() -
                         new Date(a.created_at).getTime()
                     )
+                    .filter((doc, index, self) =>
+                      index === self.findIndex(d => d.id === doc.id)
+                    )
                     .map((doc) => (
                       <div
                         key={doc.id}
